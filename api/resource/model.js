@@ -1,15 +1,37 @@
-// build your `Resource` model here
 const db = require('../../data/dbConfig')
 
-const get = () => {
-    return db('resources')
+module.exports = {
+  find,
+  findById,
+  add,
+  update,
+  remove
 }
 
-const insert = (data) => {
-    return db("resources").insert(data).then(ids => ids[0])
-} 
+function find() {
+  return db('resources')
+}
 
-module.exports = {
-    get,
-    insert,
+// MIGHT NEED TO BE TWEAKED
+function findById(id) {
+  return db('resources')
+  .where('id', id)
+  .first()
+}
+
+function add(newResource) {
+  return db('resources')
+  .insert(newResource)
+}
+
+function update(id, newResource) {
+  return db('resources')
+  .where('id', id)
+  .update(newResource)
+}
+
+function remove(id) {
+  return db('resources')
+  .where('id', id)
+  .del()
 }
