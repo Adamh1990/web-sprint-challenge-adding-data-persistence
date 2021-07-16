@@ -22,6 +22,7 @@ function findById(id) {
 function add(newResource) {
   return db('resources')
   .insert(newResource)
+  .then(id => id[0])
 }
 
 function update(id, newResource) {

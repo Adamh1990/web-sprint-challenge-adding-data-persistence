@@ -4,6 +4,13 @@ const router = express.Router()
 
 const Tasks = require('./model')
 
+router.get('/', (req, res) => {
+  Tasks.find()
+      .then(tasks => {
+          res.json(tasks)
+      })
+})
+
 router.get('/:projectId/tasks', checkForProject(), (req, res, next) => {
     Tasks.find(req.params.projectId)
     .then(tasks => res.status(200).json(tasks))

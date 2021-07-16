@@ -1,11 +1,11 @@
 // build your `Task` model here
 const db = require('../../data/dbConfig')
   
-  function find(projectId) {
-    return db('task')
-    .leftJoin('project as p')
-    .where('project_id', projectId)
-    .select('task.id', 'p.name as ProjectName', 'p.description as ProjectDescription', 'task.description as TaskDescription', 'task.notes', 'task.completed')
+  function find() {
+    return db('tasks')
+    // .leftJoin('project as p')
+    // .where('project_id', projectId)
+    // .select('task.id', 'p.name as ProjectName', 'p.description as ProjectDescription', 'task.description as TaskDescription', 'task.notes', 'task.completed')
   }
   
   // MIGHT NEED TO BE TWEAKED

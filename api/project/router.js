@@ -4,16 +4,16 @@ const router = express.Router()
 
 const Projects = require('./model')
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     if (!req.body.project_name){
         res.status(400).json({message: 'Request body missing required field(s)'})
     } else {
     Projects.insert(req.body)
-        .then(project => {
-            res.json(project)
-        })
+        .then(project => res.status(200).json(project))
+        .catch(err => next(err))
+        }
     }
-})
+)
 
 router.get('/', (req, res) => {
     Projects.get()

@@ -16,13 +16,20 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
   })
   
-  router.post('/', validateResourceDataReqs(), (req, res, next) => {
+  // router.post('/', validateResourceDataReqs(), (req, res, next) => {
+  //   Resources.add(req.body)
+  //   .then(() => {
+  //     res.status(201).json({message: 'resource created'})
+  //   })
+  //   .catch(err => next(err))
+  // })
+
+  router.post('/', (req, res, next) => {
     Resources.add(req.body)
-    .then(() => {
-      res.status(201).json({message: 'resource created'})
-    })
-    .catch(err => next(err))
-  })
+        .then(resource => res.status(200).json(resource))
+        .catch(err => next(err))
+        }
+)
   
   router.put('/:id', checkForResource(), validateResourceDataReqs(), (req, res, next) => {
     Resources.update(req.params.id, req.body)
